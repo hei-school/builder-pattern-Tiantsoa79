@@ -1,0 +1,15 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: openjdk:11
+
+    steps:
+      - checkout
+
+      - run:
+          name: Run Tests
+          command: |
+            javac -cp .:junit-4.13.1.jar ApplicationTest.java
+            java -cp .:junit-4.13.1.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore ApplicationTest
